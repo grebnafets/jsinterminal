@@ -1,8 +1,8 @@
-all: console
+all: document
 
-test: console cases runTests
+test: document cases runTests
 
-console:
+document:
 	@cat createElement.js api.js > document.js
 	@uglifyjs document.js > document.min.js
 cases:
