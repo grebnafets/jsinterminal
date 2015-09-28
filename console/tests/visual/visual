@@ -1,0 +1,8 @@
+#!/bin/bash
+
+js tests/visual/cases.js > tests/visual/result
+diff tests/visual/expected tests/visual/result
+if [ ! $? -ne 0 ]
+	then
+		echo "diff check pass."
+fi
