@@ -4,6 +4,7 @@ total   = 0;
 success = 0;
 SHOW_FAIL_INFO = 1;
 
+
 /* 0 {{{ */
 test.push(
 	function () {
@@ -11,7 +12,7 @@ test.push(
 		var res, el;
 		res = 0;
 		el = document.createElement("html");
-		if (el.innerHTML === "") {
+		if (el.innerHTML === "fail") {
 			res = 1;
 		} 
 		return res;
@@ -26,7 +27,22 @@ test.push(
 		var res, el;
 		res = 0;
 		el = document.createElement("html");
-		if (el.innerHTML === "fail") {
+		if (el.innerHTML === "") {
+			res = 1;
+		} 
+		return res;
+	}
+);
+/* }}} */
+
+/* 2 {{{ */
+test.push(
+	function () {
+		"use strict";
+		var res, el;
+		res = 0;
+		el = document.createElement("html");
+		if (el.tagName === "HTML") {
 			res = 1;
 		} 
 		return res;
