@@ -4,7 +4,7 @@
 function printf(fmt)
 {
 	"use strict";
-	var i, j, k, prefix, res, sub, out, offset, sum, exp;
+	var i, j, k, prefix, res, sub, out, offset, sum, exp, style;
 	prefix = ESCAPE_PREFIX;
 	res = [];
 	sub = {
@@ -13,7 +13,8 @@ function printf(fmt)
 	};
 	j = 0;
 	k = 1;
-	offset = 0;
+	offset  = 0;
+	style = 0;
 	for (i = 0; i < fmt.length; i += 1) {
 		offset = 0;
 		switch (fmt[i]) {
@@ -26,6 +27,7 @@ function printf(fmt)
 				res[j++] = fmt.substring(sub.s, sub.e);
 				res[j++] = printf_parseStyle(arguments[k++]);
 				sub.s = i + offset;
+				style = 1;
 				/* }}} */
 				break;
 			case 's':
@@ -90,7 +92,10 @@ function printf(fmt)
 	}
 	res[j++] = fmt.substring(sub.s, sub.e);
 	res[j++] = arguments[k++];
-	res[j++] = prefix + RESET;
+	if (style) {
+		res[j++] = prefix + RESET;
+		style = 0;
+	}
 	out = res.join('');
 	print(out);
 }
