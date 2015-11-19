@@ -119,7 +119,7 @@ function printf_parseStyle(style)
  }
  return res.join('');
 }
-function printf(fmt)
+function sprintf(fmt)
 {
  "use strict";
  var i, j, k, prefix, res, sub, out, offset, sum, exp, style;
@@ -204,7 +204,13 @@ function printf(fmt)
   style = 0;
  }
  out = res.join('');
- print(out);
+ return out;
+}
+function printf(fmt)
+{
+ "use strict";
+ var res = sprintf.apply(fmt, arguments);
+ print(res);
 }
 var console = {};
 console.log = printf;

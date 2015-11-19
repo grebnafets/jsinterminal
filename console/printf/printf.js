@@ -1,7 +1,7 @@
 /* global ESCAPE_PREFIX, RESET, printf_parseStyle */
 /* jshint unused: false */
 
-function printf(fmt)
+function sprintf(fmt)
 {
 	"use strict";
 	var i, j, k, prefix, res, sub, out, offset, sum, exp, style;
@@ -97,6 +97,13 @@ function printf(fmt)
 		style = 0;
 	}
 	out = res.join('');
-	print(out);
+	return out;
+}
+
+function printf(fmt)
+{
+	"use strict";
+	var res = sprintf.apply(fmt, arguments);
+	print(res);
 }
 
