@@ -122,17 +122,24 @@ function printf_parseStyle(style)
 function sprintf(fmt)
 {
  "use strict";
- var i, j, k, prefix, res, sub, out, offset, sum, exp, style;
- prefix = "\x1b[";
+ var args, i, j, k, prefix, res, sub, out, offset, sum, exp, style;
  res = [];
  sub = {
   s: 0,
   e: 0
  };
+ prefix = "\x1b[";
  j = 0;
  k = 1;
  offset = 0;
  style = 0;
+ if (typeof arguments[1] === "object") {
+  args = arguments[1];
+  k = 0;
+ } else {
+  args = arguments;
+  k = 1;
+ }
  for (i = 0; i < fmt.length; i += 1) {
   offset = 0;
   switch (fmt[i]) {
@@ -142,14 +149,14 @@ function sprintf(fmt)
    case 'c':
     offset++;
     res[j++] = fmt.substring(sub.s, sub.e);
-    res[j++] = printf_parseStyle(arguments[k++]);
+    res[j++] = printf_parseStyle(args[k++]);
     sub.s = i + offset;
     style = 1;
     break;
    case 's':
     offset++;
     res[j++] = fmt.substring(sub.s, sub.e);
-    res[j++] = arguments[k++];
+    res[j++] = args[k++];
     sub.s = i + offset;
     break;
    case '.':
@@ -169,7 +176,7 @@ function sprintf(fmt)
     exp = Math.pow(10, sum);
     res[j++] = fmt.substring(sub.s, sub.e);
     res[j++] = Math.round(
-     arguments[k++] * exp
+     args[k++] * exp
     ) / exp;
     if (fmt[i + offset] === 'f') {
      offset++;
@@ -179,13 +186,13 @@ function sprintf(fmt)
    case 'd':
     offset++;
     res[j++] = fmt.substring(sub.s, sub.e);
-    res[j++] = arguments[k++];
+    res[j++] = args[k++];
     sub.s = i + offset;
     break;
    case 'f':
     offset++;
     res[j++] = fmt.substring(sub.s, sub.e);
-    res[j++] = arguments[k++];
+    res[j++] = args[k++];
     sub.s = i + offset;
     break;
    default:
@@ -198,7 +205,7 @@ function sprintf(fmt)
   sub.e++;
  }
  res[j++] = fmt.substring(sub.s, sub.e);
- res[j++] = arguments[k++];
+ res[j++] = args[k++];
  if (style) {
   res[j++] = prefix + "0m";
   style = 0;
