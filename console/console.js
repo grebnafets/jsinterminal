@@ -178,6 +178,10 @@ function sprintf(fmt)
     res[j++] = Math.round(
      args[k++] * exp
     ) / exp;
+    sum = exp;
+    exp = 0;
+    while (sum >= 10) {sum /= 10; exp++;}
+    res[j - 1] = res[j - 1].toFixed(exp);
     if (fmt[i + offset] === 'f') {
      offset++;
     }
