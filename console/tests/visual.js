@@ -1,11 +1,11 @@
-
+/* global printf */
 var test = [];
 
 test.push(
 	function ()
 	{
 		"use strict";
-		console.log(
+		printf(
 			"%cyellow%cred%cgreen%cblue%cblack%cwhite%cpurple",
 			"color:yellow",
 			"color:red",
@@ -22,7 +22,7 @@ test.push(
 	function ()
 	{
 		"use strict";
-		console.log(
+		printf(
 			"%cyellow%cred%cgreen%cblue%cblack%cwhite%cpurple",
 			"background-color:yellow",
 			"background-color:red",
@@ -39,7 +39,7 @@ test.push(
 	function ()
 	{
 		"use strict";
-		console.log("%cunsupported", "color:notsupported");
+		printf("%cunsupported", "color:notsupported");
 	}		
 );
 	
@@ -47,17 +47,17 @@ test.push(
 	function ()
 	{
 		"use strict";
-		console.log("%.2foo", 1.123456789);
-		console.log("%.3", 1.123456789);
-		console.log("%.4bar", 1.123456789);
-		console.log("%.5", 1.123456789);
-		console.log("%.6foo", 1.123456789);
-		console.log("%.7", 1.123456789);
-		console.log("%.8bar", 1.123456789);
-		console.log("%.9", 1.1234567891234);
-		console.log("%.10foo", 1.1234567891234);
-		console.log("%.11", 1.1234567891234);
-		console.log("%.12bar", 1.1234567891234);
+		printf("%.2foo", 1.123456789);
+		printf("%.3", 1.123456789);
+		printf("%.4bar", 1.123456789);
+		printf("%.5", 1.123456789);
+		printf("%.6foo", 1.123456789);
+		printf("%.7", 1.123456789);
+		printf("%.8bar", 1.123456789);
+		printf("%.9", 1.1234567891234);
+		printf("%.10foo", 1.1234567891234);
+		printf("%.11", 1.1234567891234);
+		printf("%.12bar", 1.1234567891234);
 	}		
 );
 

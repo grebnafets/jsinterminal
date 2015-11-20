@@ -114,3 +114,12 @@ function printf(fmt)
 	print(res);
 }
 
+/* jshint ignore:start */
+if (typeof console !== "undefined") {
+	var print = function(msg) {console.log(msg);}
+	var printf = function(msg) {
+		var args = Array.prototype.slice.call(arguments);
+		console.log.apply(console, arguments);
+	}
+}
+/* jshint ignore:end */

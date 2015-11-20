@@ -219,5 +219,10 @@ function printf(fmt)
  var res = sprintf.apply(fmt, arguments);
  print(res);
 }
-var console = {};
-console.log = printf;
+if (typeof console !== "undefined") {
+ var print = function(msg) {console.log(msg);}
+ var printf = function(msg) {
+  var args = Array.prototype.slice.call(arguments);
+  console.log.apply(console, arguments);
+ }
+}
